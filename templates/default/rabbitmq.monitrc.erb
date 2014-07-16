@@ -1,0 +1,3 @@
+check process rabbitmq-server with pidfile <%= node[:optoro_rabbitmq][:pid] %>
+  start program = "/usr/bin/service rabbitmq-server start"
+  stop program  = "/usr/bin/service rabbitmq-server stop"

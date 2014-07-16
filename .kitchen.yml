@@ -1,0 +1,27 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: chef_zero
+platforms:
+  - name: ubuntu-14.04
+    driver_config:
+      provision_command: sudo apt-get update
+
+suites:
+  - name: default
+    data_bags_path: "test/integration/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
+    run_list:
+      - recipe[optoro_rabbitmq::default]
+    attributes:
+      optoro_rabbitmq: {
+        virtualhosts: [ "sensu" ],
+        enabled_users: [
+          { name: "sensu", password: "sensu", rights: [] }
+        ]
+      }
+      monit: {
+        poll_start_delay: 0
+      }
