@@ -19,7 +19,12 @@ suites:
       optoro_rabbitmq: {
         virtualhosts: [ "sensu" ],
         enabled_users: [
-          { name: "sensu", password: "sensu", rights: [] }
+          {
+            name: "sensu",
+            password: "sensu",
+            permissions: ".* .* .*",
+            vhost: "sensu"
+          }
         ]
       }
       monit: {
