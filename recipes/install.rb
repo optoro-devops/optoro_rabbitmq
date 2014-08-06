@@ -50,7 +50,7 @@ node[:optoro_rabbitmq][:enabled_users].each do |user|
 
   if user['permissions']
     rabbitmq_user user["name"] do
-      vhost "#{user['vhost']}"
+      vhost user['vhost']
       permissions user['permissions']
       action :set_permissions
     end
