@@ -17,12 +17,11 @@ execute "restart_rabbitmq" do
   action :nothing
 end
 
-# Install certificates for Sensu connections
+# Install certificates for SSL connections
 directory "#{node[:rabbitmq][:config_root]}/ssl" do
   action :create
 end
 
-# Install certificates from encrypted data bag
 certs = Chef::EncryptedDataBagItem.load("certificates", "rabbitmq")
 [
   { name: "cacert.pem", data: certs['cacert']},
@@ -32,7 +31,7 @@ certs = Chef::EncryptedDataBagItem.load("certificates", "rabbitmq")
   file "#{node[:rabbitmq][:config_root]}/ssl/#{key_data[:name]}" do
     content key_data[:data]
     action :create_if_missing
-    notifies :run, "execute[restart_rabbitmq]", :delayed
+    notifies :run, resources(execute: "restart_rabbitmq"), :immediately
   end
 end
 
