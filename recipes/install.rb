@@ -11,6 +11,12 @@
 include_recipe "rabbitmq::default"
 include_recipe "rabbitmq::mgmt_console"
 
+# Restart server if necessary
+execute "restart_rabbitmq" do
+  command "service rabbitmq-server restart"
+  action :nothing
+end
+
 # Install certificates for Sensu connections
 directory "#{node[:rabbitmq][:config_root]}/ssl" do
   action :create
@@ -25,13 +31,9 @@ certs = Chef::EncryptedDataBagItem.load("certificates", "rabbitmq")
 ].each do |key_data|
   file "#{node[:rabbitmq][:config_root]}/ssl/#{key_data[:name]}" do
     content key_data[:data]
-    action :create
+    action :create_if_missing
+    notifies :run, "execute[restart_rabbitmq]", :delayed
   end
-end
-
-execute "restart_rabbitmq" do
-  command "service rabbitmq-server restart"
-  action :run
 end
 
 # Add optoro-specific virtual hosts
