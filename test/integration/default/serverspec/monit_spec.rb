@@ -1,22 +1,14 @@
 # Serverspec tests for rabbitmq sensu configuration
-require 'serverspec'
+require 'spec_helper'
 
-include Serverspec::Helper::Exec
-include Serverspec::Helper::DetectOS
-RSpec.configure do |c|
-  c.before :all do
-    c.path = '/sbin:/usr/sbin'
+describe 'Monit Daemon' do
+  it 'should be running' do
+    expect(service('monit')).to be_running
   end
 end
 
-describe "Monit Daemon" do
-  it "should be running" do
-    expect(service("monit")).to be_running
-  end
-end
-
-describe "Monit RabbitMQ configuration" do
-  it "should exist" do
-    expect(file("/etc/monit/conf.d/rabbitmq.conf")).to be_file
+describe 'Monit RabbitMQ configuration' do
+  it 'should exist' do
+    expect(file('/etc/monit/conf.d/rabbitmq.conf')).to be_file
   end
 end

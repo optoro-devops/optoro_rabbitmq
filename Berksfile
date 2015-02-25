@@ -1,5 +1,5 @@
-source "https://api.berkshelf.com"
+source 'http://berks-api.optoro.io'
 
-cookbook "monit", git: "https://github.com/apsoto/monit.git"
-cookbook "rabbitmq"
+cookbook 'optoro_monit'
+cookbook 'rabbitmq'
 metadata

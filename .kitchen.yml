@@ -1,16 +1,17 @@
 ---
-driver:
-  name: docker
-<% if ENV['DOCKER_HOST'] %>
-  socket: <%= ENV['DOCKER_HOST'] %>
-<% end %>
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: 11.16.4
+  customize:
+    natdnshostresolver1: "on"
+    memory: 2048
+provisioner: chef_zero
 
-provisioner:
-  name: chef_zero
 platforms:
-  - name: ubuntu-14.04
-    driver_config:
-      provision_command: sudo apt-get update
+- name: ubuntu-14.04
+  driver_config:
+    box: opscode_ubuntu-14.04_chef-provisionerless
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
 
 suites:
   - name: default

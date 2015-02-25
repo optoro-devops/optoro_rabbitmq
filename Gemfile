@@ -1,25 +1,26 @@
 source 'https://rubygems.org'
 
-gem 'chef', '~>11.10.0'
-gem 'berkshelf'
+gem 'berkshelf', '~> 3.2.1'
 
-# Uncomment these lines if you want to live on the Edge:
-#
-# group :development do
-#   gem "berkshelf", github: "berkshelf/berkshelf"
-#   gem "vagrant", github: "mitchellh/vagrant", tag: "v1.5.2"
-# end
-#
-# group :plugins do
-#   gem "vagrant-berkshelf", github: "berkshelf/vagrant-berkshelf"
-#   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
-# end
+group :integration do
+  gem 'test-kitchen', '~> 1.3.0'
+  gem 'kitchen-ec2', '~> 0.8.0'
+  gem 'kitchen-docker', '~> 1.5.0'
+  gem 'kitchen-vagrant', '~> 0.15.0'
+end
 
-group :development, :test do
-  gem 'chef-zero', '~>1.7'
-  gem 'guard-kitchen'
-  gem 'test-kitchen'
-  gem 'kitchen-docker'
-  gem 'kitchen-vagrant'
-  gem 'knife-solo_data_bag'
+group :development do
+  gem 'guard',  '~> 2.8.0'
+  gem 'guard-rubocop',  '~> 1.2.0'
+  gem 'guard-rspec',  '~> 4.3.0'
+  gem 'guard-foodcritic',  '~> 1.0.3'
+  gem 'guard-bundler',  '~> 2.0.0'
+  gem 'chef-zero', '~> 2.2.1'
+  gem 'foodcritic', '~> 4.0.0'
+  gem 'chefspec', '~> 4.1.1'
+  gem 'rspec', '~> 3.1.0'
+  gem 'strainer', '~> 3.4.0'
+  gem 'rubocop', '~> 0.27.1'
+  gem 'knife-solo', '0.4.2'
+  gem 'knife-solo_data_bag', '1.1.0'
 end

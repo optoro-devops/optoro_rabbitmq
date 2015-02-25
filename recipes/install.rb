@@ -8,12 +8,12 @@
 #
 
 # Install rabbitmq server
-include_recipe "rabbitmq::default"
-include_recipe "rabbitmq::mgmt_console"
+include_recipe 'rabbitmq::default'
+include_recipe 'rabbitmq::mgmt_console'
 
 # Restart server if necessary
-execute "restart_rabbitmq" do
-  command "service rabbitmq-server restart"
+execute 'restart_rabbitmq' do
+  command 'service rabbitmq-server restart'
   action :nothing
 end
 
@@ -22,16 +22,16 @@ directory "#{node[:rabbitmq][:config_root]}/ssl" do
   action :create
 end
 
-certs = Chef::EncryptedDataBagItem.load("certificates", "rabbitmq")
+certs = Chef::EncryptedDataBagItem.load('certificates', 'rabbitmq')
 [
-  { name: "cacert.pem", data: certs['cacert']},
-  { name: "cert.pem", data: certs['servercert']},
-  { name: "key.pem", data: certs['serverkey']}
+  { name: 'cacert.pem', data: certs['cacert'] },
+  { name: 'cert.pem', data: certs['servercert'] },
+  { name: 'key.pem', data: certs['serverkey'] }
 ].each do |key_data|
   file "#{node[:rabbitmq][:config_root]}/ssl/#{key_data[:name]}" do
     content key_data[:data]
     action :create_if_missing
-    notifies :run, resources(execute: "restart_rabbitmq"), :immediately
+    notifies :run, 'execute[restart_rabbitmq]', :immediately
   end
 end
 
@@ -44,13 +44,13 @@ end
 
 # Add optoro-specific user accounts for RabbitMQ
 node[:optoro_rabbitmq][:enabled_users].each do |user|
-  rabbitmq_user user["name"] do
-    password user["password"]
+  rabbitmq_user user['name'] do
+    password user['password']
     action :add
   end
 
   if user['permissions']
-    rabbitmq_user user["name"] do
+    rabbitmq_user user['name'] do
       vhost user['vhost']
       permissions user['permissions']
       action :set_permissions

@@ -8,5 +8,6 @@
 #
 
 # Install rabbitmq server
-include_recipe "monit::rabbitmq"
-include_recipe "optoro_rabbitmq::install"
+include_recipe 'optoro_monit'
+include_recipe 'optoro_rabbitmq::install'
+include_recipe 'optoro_rabbitmq::monit'

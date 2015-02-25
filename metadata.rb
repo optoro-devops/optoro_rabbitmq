@@ -1,10 +1,10 @@
-name             'optoro_rabbitmq'
-maintainer       'Jeff Gillis'
-maintainer_email 'jgillis@optoro.com'
-license          'All rights reserved'
-description      'Installs/Configures optoro_rabbitmq'
+name 'optoro_rabbitmq'
+maintainer 'Optoro'
+maintainer_email 'devops@optoro.com'
+license 'All rights reserved'
+description 'Installs/Configures optoro_rabbitmq'
 long_description 'Installs/Configures optoro_rabbitmq'
-version          '0.1.7'
+version '0.1.8'
 
-depends "monit"
-depends "rabbitmq"
+depends 'optoro_monit'
+depends 'rabbitmq'
