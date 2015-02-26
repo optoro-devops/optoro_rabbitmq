@@ -4,7 +4,7 @@ maintainer_email 'devops@optoro.com'
 license 'All rights reserved'
 description 'Installs/Configures optoro_rabbitmq'
 long_description 'Installs/Configures optoro_rabbitmq'
-version '0.1.8'
+version '0.2.0'
 
 depends 'optoro_monit'
 depends 'rabbitmq'
