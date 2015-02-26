@@ -1,4 +1,4 @@
-CHECK PROCESS rabbitmq-server WITH PIDFILE <%= node[:optoro_rabbitmq][:pid] %>
+CHECK PROCESS rabbitmq-server WITH PIDFILE <%= node['optoro_rabbitmq']['pid'] %>
   GROUP rabbitmq
   START PROGRAM "/usr/sbin/service rabbitmq-server start"
   STOP PROGRAM "/usr/sbin/service rabbitmq-server stop"
