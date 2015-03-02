@@ -4,7 +4,7 @@ maintainer_email 'devops@optoro.com'
 license 'MIT'
 description 'Installs/Configures a single instance of rabbitmq server'
 long_description 'Installs/Configures a single rabbitmq service node based on the provided configuration.'
-version '0.2.1'
+version '0.2.2'
 
 depends 'optoro_monit'
 depends 'rabbitmq'
