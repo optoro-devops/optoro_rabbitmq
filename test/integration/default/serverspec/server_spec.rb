@@ -20,7 +20,7 @@ describe 'RabbitMQ Management Console' do
 end
 
 describe 'RabbitMQ configuration' do
-  %w[ cacert.pem cert.pem key.pem ].each do |pem_file|
+  %w( cacert.pem cert.pem key.pem ).each do |pem_file|
     describe "#{pem_file}" do
       it 'exists' do
         expect(file("/etc/rabbitmq/ssl/#{pem_file}")).to be_file
