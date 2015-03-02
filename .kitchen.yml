@@ -18,8 +18,14 @@ suites:
     data_bags_path: "test/integration/data_bags"
     encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
     run_list:
+      - recipe[optoro_rabbitmq::monit]
       - recipe[optoro_rabbitmq::default]
     attributes:
+      monit:
+        poll_start_delay: 0
+        mailserver:
+          mail_format:
+            from: monit@localhost
       optoro_rabbitmq: {
         virtualhosts: [ "sensu" ],
         enabled_users: [
@@ -30,7 +36,4 @@ suites:
             vhost: "sensu"
           }
         ]
-      }
-      monit: {
-        poll_start_delay: 0
       }
