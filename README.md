@@ -1,8 +1,36 @@
-# optoro_rabbitmq-cookbook
+# Description
 
-wrapper cookbook for setting up rabbitmq.
+Installs/Configures a single instance of rabbitmq server
 
-## Supported Platforms
+# Requirements
 
-Ubuntu 14.04
+## Platform:
 
+* Ubuntu (= 14.04)
+
+## Cookbooks:
+
+* optoro_monit
+* rabbitmq
+* optoro_metrics
+
+# Attributes
+
+* `node['rabbitmq']['ssl']` -  Defaults to `true`.
+* `node['rabbitmq']['ssl_cacert']` -  Defaults to `/etc/rabbitmq/ssl/cacert.pem`.
+* `node['rabbitmq']['ssl_cert']` -  Defaults to `/etc/rabbitmq/ssl/cert.pem`.
+* `node['rabbitmq']['ssl_key']` -  Defaults to `/etc/rabbitmq/ssl/key.pem`.
+* `node['rabbitmq']['use_distro_version']` -  Defaults to `false`.
+* `node['optoro_rabbitmq']['pid']` -  Defaults to `/var/run/rabbitmq/pid`.
+
+# Recipes
+
+* optoro_rabbitmq::default
+* optoro_rabbitmq::install
+* optoro_rabbitmq::monit
+
+# License and Maintainer
+
+Maintainer:: Optoro (<devops@optoro.com>)
+
+License:: MIT
