@@ -6,13 +6,12 @@ Installs/Configures a single instance of rabbitmq server
 
 ## Platform:
 
-* Ubuntu (= 14.04)
+*No platforms defined*
 
 ## Cookbooks:
 
 * optoro_monit
 * rabbitmq
-* optoro_metrics
 
 # Attributes
 

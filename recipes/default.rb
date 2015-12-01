@@ -10,4 +10,3 @@
 # Install rabbitmq server
 include_recipe 'optoro_monit::rabbitmq'
 include_recipe 'optoro_rabbitmq::install'
-include_recipe 'optoro_metrics::rabbitmq'
