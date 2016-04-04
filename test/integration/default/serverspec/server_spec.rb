@@ -39,5 +39,4 @@ describe 'RabbitMQ configuration' do
   it 'sets permissions for a rabbitmq user' do
     expect(command('rabbitmqctl -q list_user_permissions sensu | grep sensu').stdout).to match(/\.\*/)
   end
-
 end
