@@ -10,7 +10,6 @@ Installs/Configures a single instance of rabbitmq server
 
 ## Cookbooks:
 
-* optoro_monit
 * rabbitmq
 
 # Attributes
@@ -26,7 +25,6 @@ Installs/Configures a single instance of rabbitmq server
 
 * optoro_rabbitmq::default
 * optoro_rabbitmq::install
-* optoro_rabbitmq::monit
 
 # License and Maintainer
 
